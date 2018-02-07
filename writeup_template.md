@@ -67,6 +67,8 @@ The combined gradient threshold:-
 After the gradient threshold I also applied color transforms to the image in order to obtain lane lines more clearly. I used the S space from HSV color image format and R and G from RGB format. R and G combined together helped detect yellow lines more clearly and S helped in detection of other lines. The color transformed image is shown below :-
 ![alt text](https://github.com/deepanshu96/carp4/blob/master/output_images/i6.png)
 
+I also applied region_of_interest function to the image produced via combination of colour and gradient threshold to remove the unnecessary details from the image. The region of interest is shown below:-
+![alt text](https://github.com/deepanshu96/carp4/blob/master/output_images/i7.png)
 #### 3. Describe how (and identify where in your code) you performed a perspective transform and provide an example of a transformed image.
 
 The code for my perspective transform includes a function called `warper()`, which appears in lines 1 through 8 in the file `example.py` (output_images/examples/example.py) (or, for example, in the 3rd code cell of the IPython notebook).  The `warper()` function takes as inputs an image (`img`), as well as source (`src`) and destination (`dst`) points.  I chose the hardcode the source and destination points in the following manner:
