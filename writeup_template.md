@@ -160,7 +160,8 @@ I implemented this step using the 'findlines()' function in which I also plotted
 
 #### 1. Provide a link to your final video output.  Your pipeline should perform reasonably well on the entire project video (wobbly lines are ok but no catastrophic failures that would cause the car to drive off the road!).
 
-Here's a [link to my video result](./project_video.mp4)
+Here's a [link to my video result](https://github.com/deepanshu96/carp4/blob/master/white.mp4)
+[Youtube Link](https://www.youtube.com/watch?v=Va-RXxozGr8) to video files. 
 
 ---
 
@@ -168,4 +169,4 @@ Here's a [link to my video result](./project_video.mp4)
 
 #### 1. Briefly discuss any problems / issues you faced in your implementation of this project.  Where will your pipeline likely fail?  What could you do to make it more robust?
 
-Here I'll talk about the approach I took, what techniques I used, what worked and why, where the pipeline might fail and how I might improve it if I were going to pursue this project further.  
+The threshold that is the magnitude and directional thresholds were not giving the desired results. Also I think my pipeline might fail on sharp turns and bright or very dark areas. To counter this we can use equalization. Also we can modify the sliding window search algorithm in order to counter bad frames and take lane lines from previous frames approximations. The lane line jittering can be smoothened by taking the mean of last n frames of the video to make the detection more robust. 
