@@ -150,9 +150,9 @@ These steps are performed in the 'findlines()' function using the following code
 
 #### 6. Provide an example image of your result plotted back down onto the road such that the lane area is identified clearly.
 
-I implemented this step in lines # through # in my code in `yet_another_file.py` in the function `map_lane()`.  Here is an example of my result on a test image:
+I implemented this step using the 'findlines()' function in which I also plotted the final lane area on the image and used this function to obtain the final video pipeline. The plotted resultant image is shown below:-
 
-![alt text][image6]
+![alt text](https://github.com/deepanshu96/carp4/blob/master/output_images/i10.png)
 
 ---
 
