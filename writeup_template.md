@@ -160,8 +160,8 @@ I implemented this step using the 'findlines()' function in which I also plotted
 
 #### 1. Provide a link to your final video output.  Your pipeline should perform reasonably well on the entire project video (wobbly lines are ok but no catastrophic failures that would cause the car to drive off the road!).
 
-Here's a [link to my video result](https://github.com/deepanshu96/carp4/blob/master/white.mp4)
-[Youtube Link](https://www.youtube.com/watch?v=Va-RXxozGr8) to video files. 
+- Here's a [link to my video result](https://github.com/deepanshu96/carp4/blob/master/white.mp4)
+- [Youtube Link](https://www.youtube.com/watch?v=Va-RXxozGr8) to video files. 
 
 ---
 
