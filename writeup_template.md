@@ -69,35 +69,36 @@ After the gradient threshold I also applied color transforms to the image in ord
 
 I also applied region_of_interest function to the image produced via combination of colour and gradient threshold to remove the unnecessary details from the image. The region of interest is shown below:-
 ![alt text](https://github.com/deepanshu96/carp4/blob/master/output_images/i7.png)
+
 #### 3. Describe how (and identify where in your code) you performed a perspective transform and provide an example of a transformed image.
 
-The code for my perspective transform includes a function called `warper()`, which appears in lines 1 through 8 in the file `example.py` (output_images/examples/example.py) (or, for example, in the 3rd code cell of the IPython notebook).  The `warper()` function takes as inputs an image (`img`), as well as source (`src`) and destination (`dst`) points.  I chose the hardcode the source and destination points in the following manner:
-
+The code for my perspective transform includes a function called 'perspect()'. First I applied the distortion correction to the image, then I applied colour and gradient thresholds and finally I masked the region of interest. After that I applied the perspective transform to get the bird's eye view of the lane lines. I chose source and destination points so that the lines remain parallel in the perspective view. I wrote the following code to apply the perspective transform by first calculating the perspective matrix M and then applying the 'warpPerspective' function :- 
 ```python
-src = np.float32(
-    [[(img_size[0] / 2) - 55, img_size[1] / 2 + 100],
-    [((img_size[0] / 6) - 10), img_size[1]],
-    [(img_size[0] * 5 / 6) + 60, img_size[1]],
-    [(img_size[0] / 2 + 55), img_size[1] / 2 + 100]])
-dst = np.float32(
-    [[(img_size[0] / 4), 0],
-    [(img_size[0] / 4), img_size[1]],
-    [(img_size[0] * 3 / 4), img_size[1]],
-    [(img_size[0] * 3 / 4), 0]])
+def perspect(imag):
+    #print(imag.dtype)
+    imag = undist(imag)
+    #print(imag.dtype)
+    image = fincombine(imag)
+    #print(image.dtype)
+    image = region_of_interest(image)
+    
+    rows,cols = image.shape
+
+    pt1 = np.float32([[220,720],[570, 470],[722, 470],[1110, 720]]) 
+    pt2 = np.float32([[320,720],[320, 1],[920, 1],[920, 720]])
+    #pt2 = np.float32([[0,0],[rows,0],[0,cols],[rows,cols]])
+    
+    Minv = cv2.getPerspectiveTransform(pt2, pt1)
+    M = cv2.getPerspectiveTransform(pt1, pt2)
+    dst = cv2.warpPerspective(image, M, (cols, rows), flags=cv2.INTER_LINEAR) 
+    return dst, Minv
 ```
 
-This resulted in the following source and destination points:
-
-| Source        | Destination   | 
-|:-------------:|:-------------:| 
-| 585, 460      | 320, 0        | 
-| 203, 720      | 320, 720      |
-| 1127, 720     | 960, 720      |
-| 695, 460      | 960, 0        |
+The source and destination points are pt1 and pt2 respectively. 
 
 I verified that my perspective transform was working as expected by drawing the `src` and `dst` points onto a test image and its warped counterpart to verify that the lines appear parallel in the warped image.
 
-![alt text][image4]
+![alt text](https://github.com/deepanshu96/carp4/blob/master/output_images/i8.png)
 
 #### 4. Describe how (and identify where in your code) you identified lane-line pixels and fit their positions with a polynomial?
 
