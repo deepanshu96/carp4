@@ -110,12 +110,43 @@ Histogram image:-
 
 Identified Lane lines image:-
 
-![alt text](https://github.com/deepanshu96/carp4/blob/master/output_images/i8.png)
+![alt text](https://github.com/deepanshu96/carp4/blob/master/output_images/i9.png)
 
 
 #### 5. Describe how (and identify where in your code) you calculated the radius of curvature of the lane and the position of the vehicle with respect to center.
 
-I did this in lines # through # in my code in `my_other_file.py`
+I calculated the radius of curvature by first changing the pixel dimensions into metre by using the transform scale mentioned and then fit the coordinates into the formula for calculating the radius of a curve. The curve was fitted in the above step for plotting the lane lines on the image. After that the position of vehicle was calculated by measuring the difference between the center point of lane lines on the image and the center point of the whole image in the x coordinate. 
+These steps are performed in the 'findlines()' function using the following code
+```
+    #Curvature
+    #ploty , left_fit, right_fit
+    y_eval = np.max(ploty)
+    '''
+    left_curverad = ((1 + (2*left_fit[0]*y_eval + left_fit[1])**2)**1.5) / np.absolute(2*left_fit[0])
+    right_curverad = ((1 + (2*right_fit[0]*y_eval + right_fit[1])**2)**1.5) / np.absolute(2*right_fit[0])
+    print(left_curverad, right_curverad)
+    '''
+    ym_per_pix = 30/720 # meters per pixel in y dimension
+    xm_per_pix = 3.7/700 # meters per pixel in x dimension
+    
+    left_fit_cr = np.polyfit(lefty*ym_per_pix, leftx*xm_per_pix, 2)
+    right_fit_cr = np.polyfit(righty*ym_per_pix, rightx*xm_per_pix, 2)
+    
+    left_curverad = ((1 + (2*left_fit_cr[0]*y_eval*ym_per_pix + left_fit_cr[1])**2)**1.5) / np.absolute(2*left_fit_cr[0])
+    right_curverad = ((1 + (2*right_fit_cr[0]*y_eval*ym_per_pix + right_fit_cr[1])**2)**1.5) /                   
+    np.absolute(2*right_fit_cr[0])
+    
+
+    #offset calculation
+    xMax = result.shape[1]*xm_per_pix
+    yMax = result.shape[0]*ym_per_pix
+    vcent = xMax / 2
+    leftline = left_fit_cr[0]*yMax**2 + left_fit_cr[1]*yMax + left_fit_cr[2]
+    rightline = right_fit_cr[0]*yMax**2 + right_fit_cr[1]*yMax + right_fit_cr[2]
+    midline = leftline + (rightline - leftline)/2
+    centeroff = midline - vcent
+    
+```
 
 #### 6. Provide an example image of your result plotted back down onto the road such that the lane area is identified clearly.
 
