@@ -51,6 +51,9 @@ I then used the output `objpoints` and `imgpoints` to compute the camera calibra
 To demonstrate this step, I will describe how I apply the distortion correction to one of the test images like this one:
 ![alt text][image2]
 
+I used the distortion coefficients calculated in above steps using the chess board images and applied cv2.undistort() function to the lane images. The undistorted image is shown below:-
+![alt text](https://github.com/deepanshu96/carp4/blob/master/output_images/i0.png)
+
 #### 2. Describe how (and identify where in your code) you used color transforms, gradients or other methods to create a thresholded binary image.  Provide an example of a binary image result.
 
 I used a combination of color and gradient thresholds to generate a binary image (thresholding steps at lines # through # in `another_file.py`).  Here's an example of my output for this step.  (note: this is not actually from one of the test images)
