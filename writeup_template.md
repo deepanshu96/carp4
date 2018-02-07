@@ -56,9 +56,13 @@ I used the distortion coefficients calculated in above steps using the chess boa
 
 #### 2. Describe how (and identify where in your code) you used color transforms, gradients or other methods to create a thresholded binary image.  Provide an example of a binary image result.
 
-I used a combination of color and gradient thresholds to generate a binary image (thresholding steps at lines # through # in `another_file.py`).  Here's an example of my output for this step.  (note: this is not actually from one of the test images)
+I used a combination of color and gradient thresholds to generate a binary image. First I used the gradient threshold to identify the lane lines. I used 4 types of gradient thresholds namely magnitude threshold, direction threshold and absolute threshold in x and y direction respectively. After that I combined all the gradient thresholds to produce an image identifying the lane lines(note: I did not use magnitude and gradient threshold in the final image used as only absolute thresholds were giving better results for the lane lines in my project). The combined gradient threshold are implemented via 'combinegrad()' function in my project. Gradient thresholds are shown below:- 
+![alt text](https://github.com/deepanshu96/carp4/blob/master/output_images/i2.png)
+![alt text](https://github.com/deepanshu96/carp4/blob/master/output_images/i3.png)
+![alt text](https://github.com/deepanshu96/carp4/blob/master/output_images/i4.png)
 
-![alt text][image3]
+The combined gradient threshold:-
+![alt text](https://github.com/deepanshu96/carp4/blob/master/output_images/i5.png)
 
 #### 3. Describe how (and identify where in your code) you performed a perspective transform and provide an example of a transformed image.
 
