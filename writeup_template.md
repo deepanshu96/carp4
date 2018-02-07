@@ -105,10 +105,12 @@ I verified that my perspective transform was working as expected by drawing the 
 I identified the lane lines using the histogram method in which we first find the highest peaks from the bottom most row and taking that as a starting point we further find the active pixels in a rectangular region. If a shift of more than 50 good or active pixels is noticed, we take the median of those pixels in order to fit them in our next rectangular region. Finally after obtaining all the good left and right lanes pixles we fit a polynomial of degree 2 to our lines and plot them on the image. This is done in the 'findlines()' function in the code. 
 
 Histogram image:-
-![alt text][https://github.com/deepanshu96/carp4/blob/master/output_images/i75.png]
+
+![alt text](https://github.com/deepanshu96/carp4/blob/master/output_images/i75.png)
 
 Identified Lane lines image:-
-![alt text][https://github.com/deepanshu96/carp4/blob/master/output_images/i8.png]
+
+![alt text](https://github.com/deepanshu96/carp4/blob/master/output_images/i8.png)
 
 
 #### 5. Describe how (and identify where in your code) you calculated the radius of curvature of the lane and the position of the vehicle with respect to center.
